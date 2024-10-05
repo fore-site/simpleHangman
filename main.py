@@ -23,7 +23,7 @@ hangman = ['_'] * length
 #print the hangman list as a string
 print('_ '.join(hangman))
 
-choice = input('Enter a letter: ')
+choice = input('Enter a letter: ').lower()
 while length >= 1:
     if len(choice) == 1:
         # check if the letter has already been correctly selected before
@@ -31,7 +31,7 @@ while length >= 1:
             length -= 1
             print(f'{length} {turn()} left')
             print(f"You have already picked this letter earlier.\n {' '.join(hangman)}")
-            choice = input('Select a new letter: ')
+            choice = input('Select a new letter: ').lower()
             continue
         # check if the letter exists in the original word
         if choice in selected_word:
@@ -51,8 +51,8 @@ while length >= 1:
             else:
                 print(f'{length} {turn()} left')
                 print(' '.join(hangman))
-        choice = input('Enter a letter: ')
+        choice = input('Enter a letter: ').lower()
     else:
         # if user inputs more than one letter
-        choice = input('Enter only a single letter: ')
+        choice = input('Enter only a single letter: ').lower()
         continue
