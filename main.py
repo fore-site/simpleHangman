@@ -10,6 +10,7 @@ def replace_all_index(choice, selected_word, hangman):
 def turn():
     return 'turn' if length == 1 else "turns"
 
+# list of words to be randomly generated in the game.
 words = ['python', 'programming', 'scraping', 'internet', 'web']
 
 selected_word = random.choice(words)
