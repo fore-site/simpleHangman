@@ -13,12 +13,66 @@ def turn():
 # list of words to be randomly generated in the game.
 words = ['python', 'programming', 'scraping', 'internet', 'web']
 
+HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
 selected_word = random.choice(words)
 
-length = len(selected_word)
+length = len(HANGMANPICS)
+
+# declare a constant to be used in subtracting so as to retreive each ascii art
+CONSTANT = 6
 
 # create empty hangman list
-hangman = ['_'] * length
+hangman = ['_'] * len(selected_word)
 
 #print the hangman list as a string
 print('_ '.join(hangman))
@@ -29,7 +83,8 @@ while length >= 1:
         # check if the letter has already been correctly selected before
         if choice in hangman:
             length -= 1
-            print(f'{length} {turn()} left')
+            # subtract length of hangmanpics from constant in order to get the position to be printed out
+            print(HANGMANPICS[CONSTANT - length])
             print(f"You have already picked this letter earlier.\n {' '.join(hangman)}")
             choice = input('Select a new letter: ').lower()
             continue
@@ -46,13 +101,15 @@ while length >= 1:
             length -= 1
             # check if the game has gotten to the last turn, represented by length
             if length == 0:
+                print(HANGMANPICS[CONSTANT - length])
                 print(f'You failed! The word is {selected_word}')
                 break
             else:
-                print(f'{length} {turn()} left')
+                print(HANGMANPICS[CONSTANT - length])
                 print(' '.join(hangman))
         choice = input('Enter a letter: ').lower()
     else:
         # if user inputs more than one letter
         choice = input('Enter only a single letter: ').lower()
         continue
+
